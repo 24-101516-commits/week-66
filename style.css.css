@@ -791,3 +791,195 @@ outline: 6px solid #f1dcc6;
 outline-offset: -12px;
 background: radial-gradient(circle at 0 50%, transparent 14px, #fbefe2 15px);
 }
+
+.popup-coupon h2 {
+font-style: italic;
+animation: tick 1.6s ease infinite;
+}
+.popup-coupon .btn strong {
+letter-spacing: 0.05em;
+}
+/* Spin popup */
+.popup-spin {
+justify-content: space-between;
+gap: 20px;
+max-width: 600px;
+text-align: left;
+}
+.popup-spin h2 {
+font-size: 46px;
+}
+.wheel-wrap {
+position: relative;
+flex-shrink: 0;
+width: 220px;
+height: 220px;
+}
+.wheel-wrap::before {
+content: "";
+position: absolute;
+top: -8px;
+left: 50%;
+z-index: 2;
+border-left: 11px solid transparent;
+border-right: 11px solid transparent;
+border-top: 22px solid #b9852f;
+transform: translateX(-50%);
+}
+#wheel {
+width: 100%;
+height: 100%;
+object-fit: contain;
+mix-blend-mode: multiply;
+transition: transform 3s cubic-bezier(0.17, 0.67, 0.2, 1);
+}
+.wheel-gift {
+position: absolute;
+right: -30px;
+bottom: -10px;
+width: 80px;
+mix-blend-mode: multiply;
+animation: floatY 3s ease-in-out infinite;
+}
+/* Timer popup */
+.popup-timer {
+gap: 26px;
+max-width: 620px;
+}
+.hourglass {
+flex-shrink: 0;
+width: 170px;
+height: 240px;
+object-fit: cover;
+border-radius: 18px;
+}
+.popup-timer .popup-text > .icon {
+width: 30px;
+height: 30px;
+margin: 0 auto;
+color: #8b5a2b;
+}
+.popup-timer .timer {
+justify-content: center;
+margin: 14px 0 18px;
+}
+.popup-timer .timer li {
+background-color: #fffaf5;
+}
+.popup-timer .timer strong {
+color: #4a2e18;
+}
+/* Animations */
+@keyframes slideUp {
+from {
+opacity: 0;
+transform: translateY(40px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+@keyframes shimmer {
+from {
+background-position: 250% 0;
+}
+to {
+background-position: -150% 0;
+}
+}
+@keyframes shine {
+to {
+left: 140%;
+}
+}
+@keyframes slowZoom {
+from {
+transform: scale(1);
+}
+to {
+transform: scale(1.08);
+}
+}
+@keyframes floatY {
+0%, 100% {
+transform: translateY(0);
+}
+50% {
+transform: translateY(-10px);
+}
+}
+@keyframes pulse {
+0% {
+box-shadow: 0 0 0 0 rgba(139, 90, 43, 0.6);
+}
+100% {
+box-shadow: 0 0 0 12px rgba(139, 90, 43, 0);
+}
+}
+@keyframes tick {
+0%, 100% {
+transform: scale(1);
+}
+50% {
+transform: scale(1.1);
+}
+}
+@keyframes heartPop {
+0% {
+transform: scale(1);
+}
+40% {
+transform: scale(1.6);
+}
+100% {
+transform: scale(1);
+}
+}
+@keyframes cartBounce {
+0%, 100% {
+transform: scale(1);
+}
+50% {
+transform: scale(0.8) rotate(-12deg);
+}
+}
+@keyframes popIn {
+from {
+opacity: 0;
+transform: scale(0.5) translateY(60px);
+}
+to {
+opacity: 1;
+transform: scale(1) translateY(0);
+}
+}
+@keyframes spin {
+to {
+transform: rotate(360deg);
+}
+}
+@keyframes revealUp {
+from {
+opacity: 0;
+translate: 0 40px;
+}
+}
+@supports (animation-timeline: view()) {
+.product-card,
+.category,
+.feature-list li {
+animation: revealUp linear both;
+animation-timeline: view();
+animation-range: entry 0% entry 45%;
+}
+}
+
