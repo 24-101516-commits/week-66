@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css.css">
 <title>Dealora | Luxury Accessories</title>
 </head>
 <body>
@@ -318,5 +318,154 @@ Shop the Offer
 </div>
 </div>
 <script>
-    
+let cartTotal = 0;
+function scrollToSection(id) {
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+let scrollLinks = [
+["linkHome", "home"],
+["linkShop", "shop"],
+["linkCollections", "collections"],
+["linkAbout", "about"],
+["heroBtn", "shop"],
+["viewAllBtn", "arrivals"],
+["offerBtn", "arrivals"]
+];
+for (let i = 0; i < scrollLinks.length; i++) {
+document.getElementById(scrollLinks[i][0]).addEventListener("click", (e) => {
+e.preventDefault();
+scrollToSection(scrollLinks[i][1]);
+});
+}
+document.getElementById("modeToggle").addEventListener("click", () => {
+document.body.classList.toggle("dark-mode");
+});
+// Increment and decrement item count
+let plusButtons = document.querySelectorAll(".plus");
+let minusButtons = document.querySelectorAll(".minus");
+for (let i = 0; i < plusButtons.length; i++) {
+plusButtons[i].addEventListener("click", () => {
+let qty = plusButtons[i].parentElement.querySelector(".qty");
+qty.innerHTML = Number(qty.innerHTML) + 1;
+});
+}
+for (let i = 0; i < minusButtons.length; i++) {
+minusButtons[i].addEventListener("click", () => {
+let qty = minusButtons[i].parentElement.querySelector(".qty");
+if (Number(qty.innerHTML) > 1) {
+qty.innerHTML = Number(qty.innerHTML) - 1;
+}
+});
+}
+// Add to cart
+let cartButtons = document.querySelectorAll(".add-cart");
+for (let i = 0; i < cartButtons.length; i++) {
+cartButtons[i].addEventListener("click", () => {
+let qty = cartButtons[i].parentElement.querySelector(".qty");
+cartTotal = cartTotal + Number(qty.innerHTML);
+document.getElementById("cartCount").innerHTML = cartTotal;
+});
+}
+// Wishlist hearts
+let hearts = document.querySelectorAll(".wishlist");
+for (let i = 0; i < hearts.length; i++) {
+hearts[i].addEventListener("click", () => {
+hearts[i].classList.toggle("liked");
+});
+}
+// Offer countdown
+let secondsLeft = 2 * 24 * 60 * 60 + 14 * 60 * 60 + 36 * 60 + 20;
+function pad(number) {
+return String(number).padStart(2, "0");
+}
+function updateTimer() {
+let d = pad(Math.floor(secondsLeft / 86400));
+let h = pad(Math.floor((secondsLeft % 86400) / 3600));
+let m = pad(Math.floor((secondsLeft % 3600) / 60));
+let s = pad(secondsLeft % 60);
+document.getElementById("days").innerHTML = d;
+document.getElementById("hours").innerHTML = h;
+document.getElementById("minutes").innerHTML = m;
+document.getElementById("seconds").innerHTML = s;
+document.getElementById("popupDays").innerHTML = d;
+document.getElementById("popupHours").innerHTML = h;
+document.getElementById("popupMinutes").innerHTML = m;
+if (secondsLeft > 0) {
+secondsLeft = secondsLeft - 1;
+}
+}
+updateTimer();
+setInterval(updateTimer, 1000);
+// Newsletter
+document.getElementById("subscribeBtn").addEventListener("click", () => {
+let email = document.getElementById("emailInput").value;
+if (email.includes("@")) {
+document.getElementById("newsletterMsg").innerHTML = "Thank you! " + email + " is subscribed.";
+document.getElementById("emailInput").value = "";
+} else {
+document.getElementById("newsletterMsg").innerHTML = "Please enter a valid email address.";
+}
+});
+// Popup ads: one on page load, the others when scrolling to a section
+let popupBoxes = ["popupCoupon", "popupSpin", "popupTimer"];
+let popupOrder = popupBoxes.slice().sort(() => Math.random() - 0.5);
+let popupSections = ["bestsellers", "collections"];
+let wheelAngle = 0;
+document.getElementById("popup").style.display = "none";
+function popupIsOpen() {
+return document.getElementById("popup").style.display === "flex";
+}
+function showPopup() {
+if (popupOrder.length === 0 || popupIsOpen()) {
+return;
+}
+for (let i = 0; i < popupBoxes.length; i++) {
+document.getElementById(popupBoxes[i]).style.display = "none";
+}
+document.getElementById(popupOrder.shift()).style.display = "flex";
+document.getElementById("popup").style.display = "flex";
+}
+function closePopup() {
+document.getElementById("popup").style.display = "none";
+}
+setTimeout(showPopup, 2000 + Math.floor(Math.random() * 4000));
+window.addEventListener("scroll", () => {
+if (popupSections.length > 0 && !popupIsOpen()) {
+let top = document.getElementById(popupSections[0]).getBoundingClientRect().top;
+if (top < window.innerHeight * 0.5) {
+popupSections
+
+.shift();
+showPopup();
+}
+}
+});
+let closeButtons = document.querySelectorAll(".popup-close");
+for (let i = 0; i < closeButtons.length; i++) {
+closeButtons[i].addEventListener("click", closePopup);
+}
+document.getElementById("copyBtn").addEventListener("click", () => {
+navigator.clipboard.writeText("NEW15");
+document.getElementById("copyMsg").innerHTML = "Code NEW15 copied!";
+});
+let prizes = ["30% OFF", "15% OFF", "Free Shipping", "10% OFF", "20% OFF", "Gift Item"];
+document.getElementById("spinBtn").addEventListener("click", () => {
+let prize = prizes[Math.floor(Math.random() * prizes.length)];
+wheelAngle = wheelAngle + 1440 + Math.floor(Math.random() * 360);
+document.getElementById("wheel").style.transform = "rotate(" + wheelAngle + "deg)";
+document.getElementById("spinResult").innerHTML = "Spinning...";
+setTimeout(() => {
+document.getElementById("spinResult").innerHTML = "You won: " + prize;
+}, 3000);
+});
+document.getElementById("popupBtn").addEventListener("click", (e) => {
+e.preventDefault();
+closePopup();
+scrollToSection("arrivals");
+});
+</script>
+</body>
+</html>    
+
+
 
