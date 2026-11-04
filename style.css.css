@@ -281,3 +281,234 @@ display: flex;
 gap: 10px;
 margin-top: 30px;
 }
+.dot {
+width: 9px;
+height: 9px;
+border-radius: 50%;
+background-color: var(--border-color);
+}
+.dot.active {
+background-color: var(--main-color);
+animation: pulse 2s ease infinite;
+}
+.hero-image {
+height: 100%;
+overflow: hidden;
+}
+.hero-image img {
+width: 100%;
+height: 100%;
+min-height: 420px;
+object-fit: cover;
+-webkit-mask-image: linear-gradient(to right, transparent, #000 30%);
+mask-image: linear-gradient(to right, transparent, #000 30%);
+animation: slowZoom 14s ease-in-out infinite alternate;
+}
+/* Categories */
+.categories-section h2,
+.arrivals h2 {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 24px;
+margin-bottom: 30px;
+text-align: center;
+}
+.categories-section h2::before,
+.categories-section h2::after,
+.arrivals h2::before,
+.arrivals h2::after {
+content: "";
+width: 80px;
+height: 1px;
+background-color: var(--main-color);
+}
+.categories {
+display: flex;
+justify-content: space-between;
+gap: 14px;
+}
+.category {
+flex: 1;
+text-align: center;
+}
+.category a {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;
+height: 100%;
+padding: 16px 8px 12px;
+border-radius: 90px 90px 14px 14px;
+background-color: var(--img-bg);
+color: #4a2e18;
+font-size: 14px;
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.category img {
+width: 100%;
+height: 92px;
+object-fit: contain;
+mix-blend-mode: multiply;
+transition: transform 0.5s ease;
+}
+.category a:hover {
+transform: translateY(-10px);
+box-shadow: var(--shadow);
+}
+.category a:hover img {
+transform: scale(1.15) rotate(-6deg);
+}
+/* Best sellers */
+.bestsellers {
+display: grid;
+grid-template-columns: 260px 1fr;
+align-items: center;
+gap: 30px;
+}
+.bestsellers-text > .icon {
+width: 38px;
+height: 38px;
+margin-bottom: 6px;
+color: var(--main-color);
+animation: floatY 3s ease-in-out infinite;
+}
+.bestsellers-text h2 {
+font-size: 46px;
+color: var(--main-dark);
+}
+.bestsellers-text p {
+margin: 8px 0 28px;
+color: var(--muted-color);
+}
+.bestsellers-text .btn {
+background-color: transparent;
+color: var(--main-color);
+border: 1.5px solid var(--main-color);
+box-shadow: none;
+}
+.bestsellers-text .btn:hover {
+background-color: var(--main-color);
+color: #fff;
+}
+/* Product cards */
+.product-grid {
+display: grid;
+gap: 20px;
+}
+.bestsellers .product-grid {
+grid-template-columns: repeat(3, 1fr);
+}
+.arrivals .product-grid {
+grid-template-columns: repeat(4, 1fr);
+}
+.product-card {
+position: relative;
+padding: 14px;
+border-radius: var(--radius);
+border: 1px solid var(--border-color);
+background: linear-gradient(var(--img-bg) 0 150px, var(--card-color) 150px);
+box-shadow: var(--shadow);
+transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.product-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 16px 34px rgba(139, 90, 43, 0.25);
+}
+.product-img {
+width: 100%;
+height: 130px;
+margin-bottom: 18px;
+object-fit: contain;
+mix-blend-mode: multiply;
+transition: transform 0.5s ease;
+}
+.product-card:hover .product-img {
+transform: scale(1.1) rotate(4deg);
+}
+.wishlist {
+position: absolute;
+top: 12px;
+right: 12px;
+z-index: 2;
+}
+.wishlist .icon {
+width: 24px;
+height: 24px;
+color: var(--main-color);
+transition: transform 0.3s ease, color 0.3s ease;
+}
+.wishlist:hover .icon {
+transform: scale(1.2);
+}
+.wishlist.liked .icon {
+fill: #e0426b;
+color: #e0426b;
+animation: heartPop 0.5s ease;
+}
+.product-card h3 {
+font-family: 'Poppins', sans-serif;
+font-style: normal;
+font-size: 15px;
+font-weight: 500;
+}
+.rating {
+display: flex;
+align-items: center;
+gap: 5px;
+margin: 4px 0;
+font-size: 12px;
+color: var(--muted-color);
+}
+.rating .icon {
+width: 13px;
+height: 13px;
+color: #f0a020;
+}
+.price {
+margin: 6px 0 10px;
+font-size: 20px;
+font-weight: 600;
+}
+.old-price {
+margin-left: 4px;
+font-size: 13px;
+font-weight: 400;
+color: var(--muted-color);
+text-decoration: line-through;
+}
+.card-actions {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+.counter {
+display: flex;
+align-items: center;
+gap: 4px;
+padding: 4px 8px;
+border-radius: 20px;
+border: 1px solid var(--border-color);
+background-color: var(--card-color);
+}
+.counter button {
+width: 24px;
+height: 24px;
+border-radius: 50%;
+font-size: 16px;
+line-height: 1;
+transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.counter button:hover {
+background-color: var(--main-color);
+color: #fff;
+}
+.counter button:active {
+transform: scale(0.8);
+}
+.qty {
+min-width: 22px;
+text-align: center;
+font-size: 14px;
+}
